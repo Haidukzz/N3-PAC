@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutinha Protetora Pet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/projeto/static/imagens/icone.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/projeto/static/css/home.css">
+</head>
+
+<body>
+
+    <nav>
+        <img class="nav-logo" src="/projeto/static/imagens/logo-horizontal.svg" alt="Logo">
+        <ul>
+            <li><a class="nav-texto" href="agenda">Agenda</a></li>
+            <li><a class="nav-texto" href="adocao">Pets para adoção</a></li>
+            <li><a class="nav-texto" href="faq">FAQ</a></li>
+            <li><a class="nav-botao1">Quero ajudar</a></li>
+            <li><a class="nav-botao2" href="login">Equipe</a></li>
+        </ul>
+    </nav>
+
+    <div class="conteudo">
+
+        <div class="adocao-painel">
+            <img class="adocao-banner" src="/projeto/static/imagens/banner.svg" alt="Banner Adoção">
+            <img class="adocao-banner2" src="/projeto/static/imagens/banner2.svg" alt="Banner Adoção 2">
+
+            <div class="adocao-texto">
+                <p>Veja os <b>pets</b> que<br> estão disponíveis<br> para <b>adoção</b></p>
+                <a href="adocao" class="adocao-botao">Quero conferir!</a>
+            </div>
+        </div>
+
+        <div class="quem-somos">
+            <h1>Quem somos nós?</h1>
+            <p>Rutinha Protetora Pet é uma organização não-governamental (ONG) dedicada ao bem-estar, proteção e defesa dos animais domésticos,<br> fruto da paixão e comprometimento à causa animal. Nossa missão é promover a conscientização sobre a importância da proteção animal,<br> fornecer cuidados e abrigo temporário para animais em situação de vulnerabilidade e buscar lares amorosos e permanentes para cada um deles.</p>
+        </div>
+
+        <div class="estatisticas-fundo">
+
+            <div class="estatisticas-painel">
+                <h1>Toda ajuda conta e faz muita diferença.</h1>
+                
+                <div class="estatisticas">
+                    <div class="dados">
+                        <h2>{{ estatisticas.animais_adotados }}</h2>
+                        <hr>
+                        <p>animais adotados em 2023</p>
+                    </div>
+            
+                    <div class="dados">
+                        <h2>{{ estatisticas.quilos_racao_doada }}</h2>
+                        <hr>
+                        <p>quilos de ração doados desde 20XX</p>
+                    </div>
+            
+                    <div class="dados">
+                        <h2>{{ estatisticas.reais_arrecadados }}</h2>
+                        <hr>
+                        <p>reais arrecadados por meio das nossas campanhas e doadores</p>
+                    </div>
+            
+                    <div class="dados">
+                        <h2>{{ estatisticas.campanhas_realizadas }}</h2>
+                        <hr>
+                        <p>campanhas e feiras realizadas desde 20XX</p>
+                    </div>
+            
+                    <div class="dados">
+                        <h2>{{ estatisticas.itens_doados }}</h2>
+                        <hr>
+                        <p>itens doados por meio dos nossos programas</p>
+                    </div>
+                </div>
+                {% if estatisticas %}
+                <a>Última atualização: {{ estatisticas.data_atualizacao.strftime('%d/%m/%Y') }}</a>
+                {% else %}
+                <a>Última atualização não disponível</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="estatisticas-espaco"></div>
+
+        <div class="como-ajudar">
+            <div>
+                <h1>Além de <b>adotar</b>, você também pode ajudar de <b>outras</b> maneiras:</h1>
+                <ul>
+                    <li>• Doar itens, como alimentos e acessórios</li>
+                    <li>• Contribuir com nossas campanhas</li>
+                    <li>• Ser voluntário em nossos eventos e feiras</li>
+                    <li>• Divulgar nossas ações para família e amigos</li>
+                </ul>
+
+                <a class="ajudar-botao" href="agenda" style="text-decoration: none;">Próximos eventos</a>
+            </div>
+
+            <img class="ajudar-foto" src="/projeto/static/imagens/ajuda-imagem.svg"></img>
+        </div>
+
+
+        <div class="faq-painel">
+            <h1>Dúvidas sobre nós?</h1>
+            <p>No nosso FAQ (Perguntas Frequentes), você encontra as respostas para as principais dúvidas sobre a nossa atuação e funcionamento. Caso não encontre, entre em contato conosco através de nossas redes.</p>
+            <a class="faq-botao" href="faq">Saiba mais</a>
+        </div>
+
+        <img class="detalhe-azul" src="/projeto/static/imagens/detalhe-azul.svg" alt="Detalhe Azul">
+
+        <div class="rodape">
+            <div class="rodape-fundo">
+                <div class="rodape-conteiner">
+                    <img class="rodape-logo" src="/projeto/static/imagens/logo-circulo.svg" alt="Logo Circulo">
+                    <div class="rodape-secao">
+                        <h3>Sobre nós</h3>
+                        <a href="agenda">Agenda</a>
+                        <a href="faq">FAQ</a>
+                    </div>
+                    <div class="rodape-secao">
+                        <h3>Quero ajudar</h3>
+                        <a href="doacao">Doação</a>
+                        <a href="adocao">Pets para adoção</a>
+                    </div>
+                    <div class="rodape-secao">
+                        <h3>Contato</h3>
+                        <div class="rodape-contatos">
+                            <a href="https://www.facebook.com/ruteprotetora/" target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/facebook.svg" alt="Facebook">
+                            </a>
+                            <a href="https://www.instagram.com/rutinhaprotetorapet/" target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/instagram.svg" alt="Instagram">
+                            </a>
+                            <a href="https://wa.me/5547988570771" target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/whatsapp.svg" alt="WhatsApp">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="qrModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Doe com o PIX!</h2>
+            <img src="/projeto/static/imagens/pix.svg" alt="Ícone PIX" style="width: 50px; height: 50px;">
+            <p>Use nossa chave</p>
+            <input type="text" value="851.189.749-68 - Rute Feliciano" readonly style="font-family: 'Ubuntu', sans-serif;">
+            <p>Ou nosso QR Code</p>
+            <img src="/projeto/static/imagens/qrcode.svg" alt="QR Code" style="width: 150px; height: 150px;">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('qrModal');
+            var btn = document.querySelector('.nav-botao1');
+            var span = document.getElementsByClassName('close')[0];
+
+            btn.addEventListener('click', function() {
+                modal.style.display = "flex";
+                document.body.style.overflow = 'hidden';
+            });
+
+            span.addEventListener('click', function() {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+
+    <script src="/projeto/static/js/modal.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso administrativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/projeto/static/css/login.css">
+</head>
+<body>
+    <div class="login-conteiner">
+        <h2>Acesso</h2>
+        <form action="{{ url_for('login') }}" method="post">
+            <div class="login-input">
+                <label for="userId">Seu ID:</label>
+                <input type="text" id="userId" name="userId" required>
+            </div>
+            <div class="login-input">
+                <label for="password">Sua senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Acessar</button>
+        </form>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

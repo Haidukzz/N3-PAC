@@ -1,0 +1,398 @@
+html {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Reset básico para remover as margens padrão */
+body, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0 15vw;  /* margem em ambos os lados do corpo */
+    overflow-x: hidden;
+}
+
+/* Barra de navegação */
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 4.5em;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    background-color: #ffffff;
+    box-shadow: 0 0.5em 0.5em #0000001a;
+
+    display: flex; /* flexbox para organizar os itens dentro da barra de navegação */
+    align-items: center; /* centraliza verticalmente os itens dentro da barra de navegação */
+    justify-content: space-between; /* distribui os itens dentro da barra de navegação igualmente, com espaço entre eles */
+
+    z-index: 1000;
+}
+
+.nav-logo {
+    width: 13em;
+    height: 3em;
+    margin-left: 15vw;
+}
+
+nav ul {
+    margin-right: 15vw;
+    gap: 1.25em; /* adiciona espaço entre os itens da lista */
+
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: #626262;
+
+    text-decoration: none;
+}
+
+.nav-texto:hover {
+    text-decoration: underline;
+}
+
+.nav-botao1 {
+    cursor: pointer;
+    padding: 0.5em 1em; /* espaçamento para delimitar o botão */
+    border-radius: 0.375em;
+
+    background-color: #79A1DB;
+    border: 0.125em solid #79A1DB;
+
+    color: #ffffff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-botao1:hover {
+    background-color: #6e93cc; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #6e93cc;
+}
+
+.nav-botao2 {
+    padding: 0.5em 1em; /* espaçamento para delimitar o botão */
+    border-radius: 0.375em;
+
+    border: 0.125em solid #79A1DB;
+
+    color: #79A1DB;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-botao2:hover {
+    background-color: #f3f3f3; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #6e93cc;
+}
+
+@media screen and (max-width: 1100px) {
+    .nav-texto {
+        display: none; /* esconde os elementos com a classe nav-texto */
+    }
+}
+
+/* QR Code */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    margin-top: -6em;
+    background-color: #79A1DB;
+    padding: 30px;
+    border-radius: 1rem;
+    width: 20vw;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #f3f3f3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: #ffffff;
+    margin: 20px 0;
+}
+
+.modal-content img {
+    margin: 10px 0;
+    width: auto;
+    max-width: 100%;
+}
+
+.modal-content p {
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    color: #626262;
+    font-size: 15px;
+}
+
+input[type="text"]:focus {
+    border-color: #6e93cc;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+
+/* Estilo para o conteúdo principal para garantir que não fique oculto sob a barra de navegação */
+.content {
+    margin-top: 6em;  /* margem superior para evitar a sobreposição com a barra de navegação */
+}
+
+.return-button {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #79A1DB;
+    color: #ffffff;
+    padding: 0.5vw 1vw;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.return-button:hover {
+    background-color: #6e93cc;
+}
+
+h1, h2 {
+    color: #626262;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 96vw; /* Garante um pouco de margem nas laterais */
+}
+
+.animal {
+    width: 18vw;
+    background-color: #ffffff;
+    color: #626262;
+    box-shadow: 0 0.25vw 0.5vw rgba(0,0,0,0.1);
+    padding: 1vw;
+    margin-bottom: 1vw;
+    border-radius: 0.5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5vw;
+}
+
+.animal-image {
+    object-fit: cover;
+    width: 100%;
+    height: 12vw; /* Altura proporcional à largura */
+    background-color: #C4C4C4;
+    border-radius: 0.5vw;
+    margin-bottom: 0.5vw;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.animal-header h2 {
+    font-size: 1.5em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gender-icon {
+    font-size: 1.2em;
+    margin-left: 0.5em;
+}
+
+.description {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #707070;
+}
+
+.animal-info p {
+    font-size: 0.8em;
+    margin: 0.2em 0;
+    color: #555;
+}
+
+.buttons {
+    display: flex;
+    gap: 0.5vw;
+    margin-top: 0.5vw;
+    justify-content: center;
+}
+
+.animal-button {
+    padding: 0.5em 1em;
+    border-radius: 0.375vw;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    width: 6vw; /* Largura responsiva com base no viewport */
+    height: 2vw;
+    display: inline-block; /* Garante alinhamento adequado dentro dos cartões */
+    text-align: center;
+}
+
+.adopt-btn {
+    background-color: #79A1DB;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.adopt-btn:hover {
+    background-color: #6e93cc;
+}
+
+.sponsor-btn {
+    background-color: #f9a870;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.sponsor-btn:hover {
+    background-color: #eea16b;
+}
+
+.icon {
+    width: 1em;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 0.5vw;
+    margin-top: -0.3em;
+}
+
+.icon path {
+    fill: #79A1DB; /* ou qualquer cor CSS válida */
+}
+
+.pagination {
+    margin-top: 2rem; /* Espaçamento superior */
+    text-align: center;
+}
+
+.pagination button {
+    padding: 1em 2em; /* Espaçamento interno do botão */
+    margin: 0 0.5rem; /* Espaçamento entre os botões */
+    border-radius: 0.375em;
+    border: 0.125em solid #79A1DB;
+    color: #79A1DB;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+.pagination button:hover {
+    background-color: #f3f3f3;
+}
+
+/* Rodapé */
+
+.detalhe-azul {
+    position: absolute;
+    width: 100%;
+    
+    left: 0;
+    margin-top: -7.5vw;
+
+    z-index: -1;
+}
+
+.rodape-fundo {
+    position: absolute;
+    width: 100%;
+    height: 18em;
+    left: 0;
+
+    background-color: #79A1DB;
+}
+
+.rodape-conteiner {
+    width: 58vw; /* evita estiramento excessivo */
+    margin: 0 15vw;  /* margem em ambos os lados do corpo */
+    margin-top: 4em;
+
+    color: #ffffff;
+
+    display: flex;
+    justify-content: space-around; /* espaça os itens uniformemente */
+    align-items: center;
+}
+
+.rodape-logo {
+    height: 10vw;/* não cresce, não encolhe, base em 10em */
+    margin-right: 4vw;
+}
+
+.rodape-secao {
+    margin-left: 2vw;
+
+    flex: 1; /* permite que as seções cresçam para preencher o espaço disponível */
+}
+
+.rodape-secao a:hover {
+    text-decoration: underline;
+}
+
+.rodape-secao h3 {
+    margin-bottom: 10px;
+    width: 12vw;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rodape-secao a {
+    color: inherit; /* herda a cor do texto do contêiner pai */
+    display: block; /* cada link aparece em sua própria linha */
+    text-decoration: none;
+}
+
+.rodape-contatos {
+    display: flex;
+    justify-content: flex-start; /* distribui os ícones uniformemente */
+    gap: 15px;
+
+    z-index: 1000;
+}
+
+.contato-icone {
+    width: 3vw;
+    height: 3vw;
+}

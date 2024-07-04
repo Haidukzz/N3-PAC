@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pets para adoção</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/projeto/static/css/adocao.css">
+</head>
+<body>
+    <nav>
+        <img class="nav-logo" src="/projeto/static/imagens/logo-horizontal.svg"></img>
+        <ul>
+            <li><a class="nav-texto" href="/agenda">Agenda</a></li>
+            <li><a class="nav-texto" href="/adocao">Pets para adoção</a></li>
+            <li><a class="nav-texto" href="/faq">FAQ</a></li>
+            <li><a class="nav-botao1">Quero ajudar</a></li>
+            <li><a class="nav-botao2" href="/login">Equipe</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <a href="/home" style="text-decoration: none; color: inherit;">
+            <button class="return-button">⯇ Retornar</button>
+        </a>
+            
+        <h1>Pets para adoção</h1>
+
+        <div class="container">
+            {% for animal in animais %}
+            <div class="animal">
+                {% if animal.ImagemCachorro %}
+                <img class="animal-image" src="{{ url_for('static', filename=animal.ImagemCachorro) }}" alt="Foto de {{ animal.NomeCachorro }}">
+                {% else %}
+                <div class="animal-image" style="background-color: #ccc; display: flex; align-items: center; justify-content: center; color: #666;">Imagem não disponível</div>
+                {% endif %}
+                <div class="animal-header">
+                    <h2>{{ animal.NomeCachorro }} <span class="gender-icon">{% if animal.GeneroCachorro == 'Macho' %}♂{% else %}♀{% endif %}</span></h2>
+                    <p class="description">📄 {{ animal.DescricaoCachorro }}</p>
+                </div>
+                <div class="animal-info">
+                    <p class="age">🐾 Idade: {{ animal.IdadeCachorro }} anos</p>
+                    <p class="race">🔖 Raça: {{ animal.RacaCachorro }}</p>
+                    <p class="color">🎨 Cor: {{ animal.CorCachorro }}</p>
+                </div>
+                <div class="buttons">
+                    <button class="animal-button adopt-btn" onclick="openAdotarPopup('{{ animal.id }}')">Adotar</button>
+                    <button class="animal-button sponsor-btn" onclick="openApadrinharPopup('{{ animal.id }}')">Apadrinhar</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            <button onclick="prevPage()">Anterior</button>
+            <button onclick="nextPage()">Próximo</button>
+        </div>
+
+        <img class="detalhe-azul" src="/projeto/static/imagens/detalhe-azul.svg"></img>
+
+        <div class="rodape">
+            <div class="rodape-fundo">
+                <div class="rodape-conteiner">
+                    <img class="rodape-logo" src="/projeto/static/imagens/logo-circulo.svg"></img>
+
+                    <div class="rodape-secao">
+                        <h3>Sobre nós</h3>
+                        <a href="/agenda">Agenda</a>
+                        <a href="/faq">FAQ</a>
+                    </div>
+
+                    <div class="rodape-secao">
+                        <h3>Quero ajudar</h3>
+                        <a href="/doacao">Doação</a>
+                        <a href="/adocao">Pets para adoção</a>
+                    </div>
+
+                    <div class="rodape-secao">
+                        <h3>Contato</h3>
+
+                        <div class="rodape-contatos">
+                            <a href="https://www.facebook.com/ruteprotetora/" target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/facebook.svg" alt="Facebook">
+                            </a>
+                            <a href="https://www.instagram.com/rutinhaprotetorapet/" target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/instagram.svg" alt="Instagram">
+                            </a>
+                            <a href="https://wa.me/5547988570771" target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/whatsapp.svg" alt="WhatsApp">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="qrModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Doe com o PIX!</h2>
+            <img src="/projeto/static/imagens/pix.svg" alt="Ícone PIX" style="width: 50px; height: 50px;">
+            <p>Use nossa chave</p>
+            <input type="text" value="851.189.749-68 - Rute Feliciano" readonly style="font-family: 'Ubuntu', sans-serif;">
+            <p>Ou nosso QR Code</p>
+            <img src="/projeto/static/imagens/qrcode.svg" alt="QR Code" style="width: 150px; height: 150px;">
+        </div>
+    </div>
+
+    <!-- Modal para adoção-->
+    <div id="adotarPopup" class="popup" style="display: none;">
+        <div class="popup-content" style="background: #fff; border: 1px solid #ccc; padding: 20px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <span class="close-button" onclick="closeAdotarPopup()" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">&times;</span>
+            <h2>Formulário de Adoção</h2>
+            <form id="adotarForm" method="post" action="/enviar_adocao">
+                <label for="nome">Seu Nome:</label>
+                <input type="text" id="nome" name="name" required>
+                <label for="telefone">Seu Telefone:</label>
+                <input type="tel" id="telefone" name="phone" required>
+                <label for="email">Seu Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="message" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para apadrinhamento -->
+    <div id="apadrinharPopup" class="popup" style="display: none;">
+        <div class="popup-content" style="background: #fff; border: 1px solid #ccc; padding: 20px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <span class="close-button" onclick="closeApadrinharPopup()" style="position: absolute; top: 10px; right: 10px; cursor: pointer;">&times;</span>
+            <h2>Formulário de Apadrinhamento</h2>
+            <form id="apadrinharForm" method="post" action="/enviar_apadrinhar">
+                <input type="hidden" name="type" value="sponsorship">
+                <label for="nome_apadrinhamento">Seu Nome:</label>
+                <input type="text" id="nome_apadrinhamento" name="name" required>
+                <label for="telefone_apadrinhamento">Seu Telefone:</label>
+                <input type="tel" id="telefone_apadrinhamento" name="phone" required>
+                <label for="email_apadrinhamento">Seu Email:</label>
+                <input type="email" id="email_apadrinhamento" name="email" required>
+                <label for="mensagem_apadrinhamento">Mensagem:</label>
+                <textarea id="mensagem_apadrinhamento" name="message" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/projeto/static/js/modal.js"></script>
+
+    <script>
+        function openAdotarPopup(animalId) {
+            var popup = document.getElementById('adotarPopup');
+            popup.style.display = 'block';
+            // Aqui você pode realizar outras ações com base no animalId, se necessário
+        }
+    
+        function closeAdotarPopup() {
+            var popup = document.getElementById('adotarPopup');
+            popup.style.display = 'none';
+        }
+    
+        function openApadrinharPopup(animalId) {
+            var popup = document.getElementById('apadrinharPopup');
+            popup.style.display = 'block';
+            // Aqui você pode realizar outras ações com base no animalId, se necessário
+        }
+    
+        function closeApadrinharPopup() {
+            var popup = document.getElementById('apadrinharPopup');
+            popup.style.display = 'none';
+        }
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            // Seu código existente para paginação e modal QR
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const animals = document.querySelectorAll('.animal');
+            const itemsPerPage = 9;
+            let currentPage = 1;
+
+            function showPage(page) {
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+
+                animals.forEach(function(animal) {
+                    animal.style.display = 'none';
+                });
+
+                for (let i = startIndex; i < endIndex && i < animals.length; i++) {
+                    animals[i].style.display = 'block';
+                }
+
+                updateButtonStyles(page);
+            }
+
+            function updateButtonStyles(page) {
+                const buttons = document.querySelectorAll('.pagination button');
+                buttons.forEach(button => {
+                    if (button.textContent == page.toString()) {
+                        button.style.backgroundColor = '#ececec';
+                    } else {
+                        button.style.backgroundColor = '';
+                    }
+                });
+            }
+
+            function nextPage() {
+                if (currentPage < Math.ceil(animals.length / itemsPerPage)) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            }
+
+            function prevPage() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            }
+
+            showPage(currentPage);
+            updateButtonStyles(currentPage);
+
+            const pagination = document.querySelector('.pagination');
+
+            for (let i = 1; i <= Math.ceil(animals.length / itemsPerPage); i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', function() {
+                    currentPage = i;
+                    showPage(currentPage);
+                });
+                pagination.insertBefore(pageButton, pagination.children[pagination.children.length - 1]);
+            }
+
+            const prevButton = document.querySelector('.pagination button:first-child');
+            const nextButton = document.querySelector('.pagination button:last-child');
+
+            prevButton.addEventListener('click', prevPage);
+            nextButton.addEventListener('click', nextPage);
+        });
+    </script>
+</body>
+</html>
+

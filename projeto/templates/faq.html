@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de eventos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/projeto/static/css/faq.css">
+</head>
+<body>
+    <nav>
+        <img class="nav-logo" src="/projeto/static/imagens/logo-horizontal.svg"></img>
+        <ul>
+            <li> <a class="nav-texto"    href="agenda">           Agenda</a> </li>
+            <li> <a class="nav-texto"    href="adocao">           Pets para adoção</a> </li>
+            <li> <a class="nav-texto"    href="faq">              FAQ</a> </li>
+            <li> <a class="nav-botao1">                                Quero ajudar</a> </li>
+            <li> <a class="nav-botao2"   href="login">            Equipe</a> </li>
+        </ul>
+    </nav>
+    <div class="content">
+
+        <a href="home" style="text-decoration: none; color: inherit;">
+            <button class="return-button">⯇ Retornar</button>
+        </a>
+            
+        <h1>FAQ - Perguntas frequentes</h1>
+
+        <div class="container">
+
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-button">Como faço para doar para a ONG?</button>
+                    <div class="accordion-content">
+                        <p>Aceitamos doações monetárias através do PIX que está disponível no nosso site, onde você pode fazer uma contribuição única ou tornar-se um doador recorrente. Também aceitamos doações de itens como ração, cobertores e materiais de limpeza. Entre em contato conosco para obter informações sobre como fazer doações físicas.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">Vocês aceitam doações de alimentos e outros suprimentos para animais?</button>
+                    <div class="accordion-content">
+                        <p>Sim, aceitamos doações de alimentos para animais, assim como outros suprimentos essenciais, como brinquedos, coleiras e produtos de higiene. Esses itens são vitais para cuidar dos animais em nosso abrigo e durante os resgates.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">Como posso adotar um animal da ONG?</button>
+                    <div class="accordion-content">
+                        <p>Se você está interessado em adotar um dos animais disponíveis, nos contate pelo WhatsApp ou preencha o formulário de adoção em nosso site e aguarde entrarmos em contato. Nós possuímos um processo a ser cumprido para a aprovação de possíveis novos lares.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">Quais são os critérios para adotar um animal?</button>
+                    <div class="accordion-content">
+                        <p>Antes de adotar um animal, realizamos uma visita ao seu lar para garantir que esteja adequado para receber um de nossos animais e atenda todas as necessidades. Além disso, é importante que haja compatibilidade entre o possível dono e seu futuro pet.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button">Vocês oferecem serviços de esterilização e vacinação?</button>
+                    <div class="accordion-content">
+                        <p>Sim, oferecemos serviços de esterilização e vacinação para animais resgatados e para a comunidade em geral através de nossos mutirões. Fique atento às nossas redes sociais e à página de eventos no nosso site para saber mais sobre nossos serviços veterinários.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <img class="detalhe-azul" src="/projeto/static/imagens/detalhe-azul.svg"></img>
+
+        <div class="rodape">
+            <div class="rodape-fundo">
+                <div class="rodape-conteiner">
+
+                    <img class="rodape-logo" src="/projeto/static/imagens/logo-circulo.svg"></img>
+
+                    <div class="rodape-secao">
+                        <h3>Sobre nós</h3>
+                        <a href="agenda">Agenda</a>
+                        <a href="faq">FAQ</a>
+                    </div>
+
+                    <div class="rodape-secao">
+                        <h3>Quero ajudar</h3>
+                        <a href="doacao">Doação</a>
+                        <a href="adocao">Pets para adoção</a>
+                    </div>
+
+                    <div class="rodape-secao">
+                        <h3>Contato</h3>
+
+                        <div class="rodape-contatos">
+                            <a href="https://www.facebook.com/ruteprotetora/"           target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/facebook.svg"     alt="Facebook">
+                            </a>
+                            <a href="https://www.instagram.com/rutinhaprotetorapet/"    target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/instagram.svg"    alt="Instagram">
+                            </a>
+                            <a href="https://wa.me/5547988570771"                       target="_blank">
+                                <img class="contato-icone" src="/projeto/static/imagens/whatsapp.svg"     alt="WhatsApp">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="qrModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Doe com o PIX!</h2>
+            <img src="/projeto/static/imagens/pix.svg" alt="Ícone PIX" style="width: 50px; height: 50px;">
+            <p>Use nossa chave</p>
+            <input type="text" value="851.189.749-68 - Rute Feliciano" readonly style="font-family: 'Ubuntu', sans-serif;">
+            <p>Ou nosso QR Code</p>
+            <img src="/projeto/static/imagens/qrcode.svg" alt="QR Code" style="width: 150px; height: 150px;">
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+
+                if (button.classList.contains('active')) {
+                    button.classList.remove('active');
+                    accordionContent.style.maxHeight = 0;
+                } else {
+                    // Primeiro fecha todos os outros itens abertos
+                    document.querySelectorAll('.accordion-button').forEach(otherButton => {
+                        if (otherButton !== button) {
+                            otherButton.classList.remove('active');
+                            otherButton.nextElementSibling.style.maxHeight = 0;
+                        }
+                    });
+                    
+                    button.classList.add('active');
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                }
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('qrModal');
+            var btn = document.querySelector('.nav-botao1');
+            var span = document.getElementsByClassName('close')[0];
+
+            btn.addEventListener('click', function() {
+                modal.style.display = "flex";
+                document.body.style.overflow = 'hidden';
+            });
+
+            span.addEventListener('click', function() {
+                modal.style.display = "none";
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+    <script src="modal.js"></script>
+
+</body>
+</html>

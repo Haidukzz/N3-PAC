@@ -1,0 +1,598 @@
+html {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    margin: 0 15vw;  /* margem em ambos os lados do corpo */
+    
+    overflow-x: hidden; /* sem barra de rolagem horizontal */
+}
+
+
+/* Barra de navegação */
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 4.5em;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    background-color: #ffffff;
+    box-shadow: 0 0.5em 0.5em #0000001a;
+
+    display: flex; /* flexbox para organizar os itens dentro da barra de navegação */
+    align-items: center; /* centraliza verticalmente os itens dentro da barra de navegação */
+    justify-content: space-between; /* distribui os itens dentro da barra de navegação igualmente, com espaço entre eles */
+
+    z-index: 1000;
+}
+
+.nav-logo {
+    width: 13em;
+    height: 3em;
+    margin-left: 15vw;
+}
+
+nav ul {
+    margin-right: 15vw;
+    gap: 1.25em; /* adiciona espaço entre os itens da lista */
+
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: #626262;
+
+    text-decoration: none;
+}
+
+.nav-texto:hover {
+    text-decoration: underline;
+}
+
+.nav-botao1 {
+    padding: 0.5em 1em; /* espaçamento para delimitar o botão */
+    border-radius: 0.375em;
+    cursor: pointer;
+
+    background-color: #79A1DB;
+    border: 0.125em solid #79A1DB;
+
+    color: #ffffff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-botao1:hover {
+    background-color: #6e93cc; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #6e93cc;
+}
+
+.nav-botao2 {
+    padding: 0.5em 1em; /* espaçamento para delimitar o botão */
+    border-radius: 0.375em;
+
+    border: 0.125em solid #79A1DB;
+
+    color: #79A1DB;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-botao2:hover {
+    background-color: #f3f3f3; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #6e93cc;
+}
+
+@media screen and (max-width: 1100px) {
+    .nav-texto {
+        display: none; /* esconde os elementos com a classe nav-texto */
+    }
+}
+
+
+/* Conteúdo */
+
+.conteudo {
+    margin-top: 6em;  /* margem superior para evitar a sobreposição da barra de navegação */
+}
+
+
+/* QR Code */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    margin-top: -6em;
+    background-color: #79A1DB;
+    padding: 30px;
+    border-radius: 1rem;
+    width: 20vw;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #f3f3f3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: #ffffff;
+    margin: 20px 0;
+}
+
+.modal-content img {
+    margin: 10px 0;
+    width: auto;
+    max-width: 100%;
+}
+
+.modal-content p {
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    color: #626262;
+    font-size: 15px;
+}
+
+input[type="text"]:focus {
+    border-color: #6e93cc;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+
+/* Painel */
+
+.adocao-painel {
+    margin-bottom: 1.5em;
+}
+
+.adocao-banner {
+    position: relative; /* permite o posicionamento absoluto de elementos filhos em relação a este contêiner */
+    width: 100%; 
+    height: 100%; /* define uma altura fixa */
+    border-radius: 1em;
+
+    background-color: #C4C4C4;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    
+    display: flex; /* flexbox para alinhar itens internos */
+    align-items: flex-end; /* alinha os itens internos ao final (parte inferior) do contêiner */
+}
+
+.adocao-banner2 {
+    display: none;
+}
+
+.adocao-texto {
+    position: absolute; /* posiciona o conteúdo em relação ao seu contêiner mais próximo com posição relativa ou absoluta */
+    top: 11vw;
+    left: 20vw;
+    
+    color: white;
+}
+
+.adocao-texto p {
+    font-size: 2em;
+}
+
+.adocao-botao {
+    position: absolute; /* posiciona o conteúdo em relação ao seu contêiner mais próximo com posição relativa ou absoluta */
+    width: 8em;
+    height: 2em;
+    top: 8em;
+    left: 0em;
+    padding: 0.25em 0.5em; /* espaçamento interno no botão3 */
+    border-radius: 0.375em;
+
+    background-color: #f9a870;
+    border: 0.125em solid #f9a870; 
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    
+    color: #ffffff;
+    font-size: 1.25em;
+
+    display: flex; /* flexbox para alinhar itens internos do botão3 */
+    align-items: center; /* centraliza verticalmente o conteúdo dentro do botão3 */
+    justify-content: center; /* centraliza horizontalmente o conteúdo dentro do botão3 */
+    text-decoration: none; /* remove o sublinhado do link do botão3 */
+}
+
+.adocao-botao:hover {
+    background-color: #eea16b; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #eea16b;
+}
+
+@media screen and (max-width: 1350px) {
+    .adocao-banner {
+        display: none;
+    }
+
+    .adocao-banner2 {
+        position: relative; /* permite o posicionamento absoluto de elementos filhos em relação a este contêiner */
+        width: 100%; 
+        height: 100%; /* define uma altura fixa */
+        border-radius: 1em;
+
+        background-color: #C4C4C4;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        
+        display: flex; /* flexbox para alinhar itens internos */
+        align-items: flex-end; /* alinha os itens internos ao final (parte inferior) do contêiner */
+    }
+}
+
+
+/* Quem somos */
+
+.quem-somos {
+    margin-bottom: 4em;
+    
+    color: #626262;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.quem-somos h1 {
+    font-size: 1.5em;
+    font-weight: normal; /* remove o negrito padrão */
+}
+
+
+/* Estatísticas */
+
+.estatisticas-fundo {
+    position: absolute;
+    width: 100%;
+    height: 28em;
+    left: 0;
+    margin-bottom: 4em;
+
+    background-color: #79A1DB;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.estatisticas-painel {
+    position: relative;
+    bottom: 1.5em;
+    margin: 0 21vw;
+}
+
+.estatisticas-painel h1 {
+    position: absolute;
+    width: 31vw;
+    top: 2.5em;
+    left: 50%;
+
+    margin-bottom: 2em;
+    padding: 0.5em 0.5em;
+    border-radius: 0.5em;
+
+    color: #ffffff;
+    background-color: #f9a870;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+
+    text-align: center;
+
+    transform: translate(-50%, -50%);
+}
+
+.estatisticas {
+    color: #ffffff;
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.dados {
+    position: relative;
+    top: 11.5em;
+
+    flex: 1; /* distribui o espaço igualmente entre os elementos */
+    text-align: center;
+}
+
+.dados h2 {
+    margin: 0 0 0.5rem 0; /* espaçamento abaixo do número */
+
+    font-size: 4rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dados p {
+    position: relative;
+    width: 80%;
+    
+    top: 1em;
+    margin: 0 auto 0.5rem auto; /* centraliza horizontalmente e ajusta o espaçamento acima da linha */
+
+    font-size: 1rem;
+}
+
+.dados hr {
+    width: 4em;
+    height: 0.5rem;
+
+    margin: 0 auto; /* centraliza a linha horizontalmente */
+    border: none;
+    border-radius: 0.375em;
+
+    background-color: #b6d2fb;
+}
+
+.estatisticas-painel a {
+    position: absolute;
+    top: 28em;
+    left: 50%;
+    margin-bottom: 2em;
+
+    display: block;
+    color: #ffffff;
+
+    transform: translate(-50%, -50%);
+}
+
+.estatisticas-espaco {
+    height: 28em; /* mesma altura do fundo */
+    margin-bottom: 4em;
+
+    z-index: -1;
+}
+
+/* Como ajudar */
+
+.como-ajudar {
+    margin-bottom: 6em;
+
+    display: flex;
+    align-items: flex-start; /* alinha os itens no topo do contêiner */
+    flex-wrap: wrap; /* permite que os itens sejam distribuídos em várias linhas */
+    justify-content: space-between;
+}
+
+.como-ajudar h1 {
+    width: 12em;
+
+    font-weight: normal;
+    color: #626262;
+}
+
+.como-ajudar ul {
+    margin-left: -2.5em;
+    margin-bottom: 1.5em;
+
+    list-style: none;
+    line-height: 3;
+    color: #626262;
+}
+
+.ajudar-botao {
+    width: 10em;
+    height: 2em;
+    left: 0em;
+
+    border-radius: 0.375em;
+    padding: 0.5em 1em;
+    margin-top: 1em;
+
+    background-color: #79A1DB;
+    border: 0.125em solid #79A1DB;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.ajudar-botao:hover {
+    background-color: #6e93cc; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #6e93cc;
+}
+
+.como-ajudar > div {
+    flex: 1;
+}
+
+.como-ajudar img {
+    max-width: 100%;
+    height: auto;
+    flex: 1;
+    align-self: center;
+}
+
+@media (max-width: 1290px) {
+    .como-ajudar {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .como-ajudar > div {
+        width: 100%;
+        max-width: 600px; /* Ajuste conforme necessário */
+    }
+
+    .como-ajudar img {
+        margin-top: 2em;
+        max-width: 80%;
+        height: auto;
+    }
+
+    .como-ajudar h1 {
+        width: auto;
+    }
+
+    .como-ajudar ul {
+        margin-left: 0;
+    }
+
+    .ajudar-botao {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+
+/* Dúvidas */
+
+.faq-painel {
+    position: relative;
+    height: 18em;
+    border-radius: 1em;
+    background-color: #f9a870;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    
+    z-index: 999;
+}
+
+.faq-painel p {
+    width: 25em;
+}
+
+.faq-botao {
+    width: 10em;
+    height: 2em;
+    left: 0em;
+
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    border-radius: 0.375em;
+
+    background-color: #ffffff;
+    border: 0.125em solid #ffffff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    color: #626262;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.faq-botao:hover {
+    background-color: #f3f3f3; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #f3f3f3;
+}
+
+
+/* Rodapé */
+
+.detalhe-azul {
+    position: absolute;
+    width: 100%;
+    
+    left: 0;
+    margin-top: -7.5vw;
+
+    z-index: -1;
+}
+
+.rodape-fundo {
+    position: absolute;
+    width: 100%;
+    height: 18em;
+    left: 0;
+
+    background-color: #79A1DB;
+}
+
+.rodape-conteiner {
+    width: 58vw; /* evita estiramento excessivo */
+    margin: 0 15vw;  /* margem em ambos os lados do corpo */
+    margin-top: 4em;
+
+    color: #ffffff;
+
+    display: flex;
+    justify-content: space-around; /* espaça os itens uniformemente */
+    align-items: center;
+}
+
+.rodape-logo {
+    height: 10vw;/* não cresce, não encolhe, base em 10em */
+    margin-right: 4vw;
+}
+
+.rodape-secao {
+    margin-left: 2vw;
+
+    flex: 1; /* permite que as seções cresçam para preencher o espaço disponível */
+}
+
+.rodape-secao a:hover {
+    text-decoration: underline;
+}
+
+.rodape-secao h3 {
+    margin-bottom: 10px;
+    width: 12vw;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rodape-secao a {
+    color: inherit; /* herda a cor do texto do contêiner pai */
+    display: block; /* cada link aparece em sua própria linha */
+    text-decoration: none;
+}
+
+.rodape-contatos {
+    display: flex;
+    justify-content: flex-start; /* distribui os ícones uniformemente */
+    gap: 15px;
+
+    z-index: 1000;
+}
+
+.contato-icone {
+    width: 3vw;
+    height: 3vw;
+}

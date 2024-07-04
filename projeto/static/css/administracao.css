@@ -1,0 +1,168 @@
+:root {
+    --primary-color: #4CAF50;
+    --hover-primary-color: #45a049;
+    --danger-color: #f44336;
+    --hover-danger-color: #d32f2f;
+    --background-color: #f0f0f0;
+    --card-background: #fff;
+    --text-color: #333;
+    --secondary-text-color: #666;
+    --border-color: #ddd;
+    --card-width: 250px;  /* Tamanho reduzido dos cards */
+    --image-height: 150px; /* Altura fixa para as imagens */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1, h2 {
+    color: var(--text-color);
+}
+
+p {
+    color: var(--secondary-text-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--hover-primary-color);
+}
+
+#formularioAdicionarAnimal, #formularioAdicionarEvento {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.animal-card, .evento-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    width: var(--card-width);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.animal-card:hover, .evento-card:hover {
+    transform: translateY(-5px);
+}
+
+.animal-card img, .evento-card img {
+    width: 100%;
+    height: var(--image-height);
+    object-fit: cover; /* Garante que a imagem cubra a área designada sem distorcer */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-details {
+    padding: 10px;
+}
+
+.card-details h3 {
+    margin-top: 0;
+}
+
+.card-details p {
+    margin: 5px 0;
+}
+
+.button-container {
+    display: flex; /* Alinha os botões lado a lado */
+    align-items: center;
+}
+
+.edit-button, .remove-button {
+    background-color: var(--primary-color); /* Cor padrão para ambos */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 10px 5px 10px 0; /* Adiciona margem à direita do botão editar */
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.edit-button {
+    background-color: #FFA500; /* Cor laranja para o botão de editar */
+}
+
+.edit-button:hover {
+    background-color: #CC8400; /* Cor mais escura no hover para o botão de editar */
+}
+
+.remove-button {
+    background-color: var(--danger-color); /* Cor vermelha para o botão de remover */
+}
+
+.remove-button:hover {
+    background-color: var(--hover-danger-color); /* Cor vermelha mais escura no hover */
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

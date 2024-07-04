@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Administração</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/administracao.css') }}">
+    <script>
+        function mostrarFormularioAnimal() {
+            var formularioAnimal = document.getElementById("formularioAdicionarAnimal");
+            var formularioEvento = document.getElementById("formularioAdicionarEvento");
+            formularioAnimal.style.display = formularioAnimal.style.display === "none" ? "block" : "none";
+            formularioEvento.style.display = "none";
+        }
+
+        function mostrarFormularioEvento() {
+            var formularioAnimal = document.getElementById("formularioAdicionarAnimal");
+            var formularioEvento = document.getElementById("formularioAdicionarEvento");
+            formularioEvento.style.display = formularioEvento.style.display === "none" ? "block" : "none";
+            formularioAnimal.style.display = "none";
+        }
+
+        function mostrarFormularioEdicao() {
+            var modal = document.getElementById("formularioEdicaoModal");
+            modal.style.display = "block";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("formularioEdicaoModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var closeButton = document.querySelector('.close-button');
+            closeButton.addEventListener('click', function() {
+                var modal = document.getElementById("formularioEdicaoModal");
+                modal.style.display = "none";
+            });
+        });
+
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var editEventButtons = document.querySelectorAll('.edit-button');
+            editEventButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var eventId = this.getAttribute('data-id');
+                    openModal('editarEventoModal' + eventId);
+                });
+            });
+
+            var editAnimalButtons = document.querySelectorAll('.edit-button');
+            editAnimalButtons.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    var animalId = this.getAttribute('data-id');
+                    openModal('editarAnimalModal' + animalId);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Página de Administração</h1>
+    <button onclick="mostrarFormularioAnimal()">Adicionar animal</button>
+    <button onclick="mostrarFormularioEvento()">Adicionar evento</button>
+
+    <div id="formularioAdicionarAnimal" style="display:none;">
+        <h2>Adicionar Animal</h2>
+        <form action="{{ url_for('administracao') }}" method="post" enctype="multipart/form-data">
+            <label for="nome">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br><br>
+            <label for="idade">Idade:</label><br>
+            <input type="number" id="idade" name="idade"><br><br>
+            <label for="raca">Raça:</label><br>
+            <input type="text" id="raca" name="raca"><br><br>
+            <label for="cor">Cor:</label><br>
+            <input type="text" id="cor" name="cor"><br><br>
+            <label for="genero">Gênero:</label><br>
+            <input type="text" id="genero" name="genero"><br><br>
+            <label for="descricao">Descrição:</label><br>
+            <input type="text" id="descricao" name="descricao"><br><br>
+            <label for="status_adocao">Status de Adoção:</label><br>
+            <input type="text" id="status_adocao" name="status_adocao"><br><br>
+            <label for="foto">Foto:</label><br>
+            <input type="file" id="foto" name="foto"><br><br>
+            <input type="submit" value="Adicionar Animal">
+        </form>
+    </div>
+
+    <div id="formularioAdicionarEvento" style="display:none;">
+        <h2>Adicionar Evento</h2>
+        <form action="{{ url_for('adicionar_evento') }}" method="post" enctype="multipart/form-data">
+            <label for="titulo">Título:</label><br>
+            <input type="text" id="titulo" name="titulo"><br><br>
+            <label for="descricao">Descrição:</label><br>
+            <textarea id="descricao" name="descricao" rows="4" cols="50"></textarea><br><br>
+            <label for="data_horario">Data e Horário:</label><br>
+            <input type="datetime-local" id="data_horario" name="data_horario" required><br><br>
+            <label for="localizacao">Localização:</label><br>
+            <input type="text" id="localizacao" name="localizacao"><br><br>
+            <label for="foto_evento">Foto do Evento:</label><br>
+            <input type="file" id="foto_evento" name="foto" required><br><br>
+            <input type="submit" value="Adicionar Evento">
+        </form>
+    </div>
+
+    <button onclick="mostrarFormularioEdicao()">Editar estatísticas</button>
+
+    <div id="formularioEdicaoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Editar estatísticas</h2>
+            <form action="{{ url_for('editar_estatisticas') }}" method="post">
+                <input type="number" name="animais_adotados" placeholder="Animais Adotados" required>
+                <input type="number" name="quilos_racao_doada" placeholder="Quilos de Ração Doada" required>
+                <input type="number" name="reais_arrecadados" placeholder="Reais Arrecadados" required>
+                <input type="number" name="campanhas_realizadas" placeholder="Campanhas Realizadas" required>
+                <input type="number" name="itens_doados" placeholder="Itens Doados" required>
+                <button type="submit">Atualizar estatísticas</button>
+            </form>
+        </div>
+    </div>
+
+    <h2>Animais Cadastrados</h2>
+    <div class="card-container">
+        {% for animal in animais %}
+        <div class="animal-card">
+            {% if animal.ImagemCachorro %}
+            <img src="{{ url_for('static', filename=animal.ImagemCachorro) }}" alt="Foto de {{ animal.NomeCachorro }}">
+            {% else %}
+            <p>Imagem não disponível</p>
+            {% endif %}
+            <div class="card-details">
+                <h3>{{ animal.NomeCachorro }}</h3>
+                <p><strong>Raça:</strong> {{ animal.RacaCachorro }}</p>
+                <p><strong>Cor:</strong> {{ animal.CorCachorro }}</p>
+                <p><strong>Descrição:</strong> {{ animal.DescricaoCachorro }}</p>
+                <p><strong>Status de Adoção:</strong> {{ animal.StatusAdocaoCachorro }}</p>
+                <div class="button-container">
+                    <button data-id="{{ animal.id }}" class="edit-button" onclick="openModal('editarAnimalModal{{ animal.id }}')">Editar</button>
+                    <form action="{{ url_for('remover_cachorro', id=animal.id) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="remove-button">Remover</button>
+                    </form>
+                </div>
+                <div id="editarAnimalModal{{ animal.id }}" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button" onclick="closeModal('editarAnimalModal{{ animal.id }}')">&times;</span>
+                        <form action="{{ url_for('editar_cachorro', id=animal.id) }}" method="post">
+                            <label for="nome">Nome:</label><br>
+                            <input type="text" id="nome" name="nome" value="{{ animal.NomeCachorro }}"><br><br>
+                            <label for="idade">Idade:</label><br>
+                            <input type="number" id="idade" name="idade" value="{{ animal.IdadeCachorro }}"><br><br>
+                            <label for="raca">Raça:</label><br>
+                            <input type="text" id="raca" name="raca" value="{{ animal.RacaCachorro }}"><br><br>
+                            <label for="cor">Cor:</label><br>
+                            <input type="text" id="cor" name="cor" value="{{ animal.CorCachorro }}"><br><br>
+                            <label for="genero">Gênero:</label><br>
+                            <input type="text" id="genero" name="genero" value="{{ animal.GeneroCachorro }}"><br><br>
+                            <label for="descricao">Descrição:</label><br>
+                            <input type="text" id="descricao" name="descricao" value="{{ animal.DescricaoCachorro }}"><br><br>
+                            <label for="status_adocao">Status de Adoção:</label><br>
+                            <input type="text" id="status_adocao" name="status_adocao" value="{{ animal.StatusAdocaoCachorro }}"><br><br>
+                            <button type="submit">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Eventos Cadastrados</h2>
+    <div class="card-container">
+        {% for evento in eventos %}
+        <div class="evento-card">
+            {% if evento.imagem_evento %}
+            <img src="{{ url_for('static', filename=evento.imagem_evento) }}" alt="Foto do evento {{ evento.titulo }}">
+            {% else %}
+            <p>Imagem não disponível</p>
+            {% endif %}
+            <div class="card-details">
+                <h3>{{ evento.titulo }}</h3>
+                <p><strong>Descrição:</strong> {{ evento.descricao }}</p>
+                <p><strong>Data:</strong> {{ evento.data_horario }}</p>
+                <p><strong>Localização:</strong> {{ evento.localizacao }}</p>
+                <div class="button-container">
+                    <button data-id="{{ evento.id }}" class="edit-button" onclick="openModal('editarEventoModal{{ evento.id }}')">Editar</button>
+                    <form action="{{ url_for('remover_evento', id=evento.id) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="remove-button">Remover</button>
+                    </form>
+                </div>
+                <div id="editarEventoModal{{ evento.id }}" class="modal">
+                    <div class="modal-content">
+                        <span class="close-button" onclick="closeModal('editarEventoModal{{ evento.id }}')">&times;</span>
+                        <form action="{{ url_for('editar_evento', id=evento.id) }}" method="post">
+                            <label for="titulo">Título:</label><br>
+                            <input type="text" id="titulo" name="titulo" value="{{ evento.titulo }}"><br><br>
+                            <label for="descricao">Descrição:</label><br>
+                            <textarea id="descricao" name="descricao" rows="4" cols="50">{{ evento.descricao }}</textarea><br><br>
+                            <label for="data_horario">Data e Horário:</label><br>
+                            <input type="datetime-local" id="data_horario" name="data_horario" value="{{ evento.data_horario.strftime('%Y-%m-%dT%H:%M') }}" required><br><br>
+                            <label for="localizacao">Localização:</label><br>
+                            <input type="text" id="localizacao" name="localizacao" value="{{ evento.localizacao }}"><br><br>
+                            <button type="submit">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

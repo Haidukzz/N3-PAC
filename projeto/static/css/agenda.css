@@ -1,0 +1,432 @@
+html {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+/* Reset básico para remover as margens padrão */
+body, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0 15vw;  /* margem em ambos os lados do corpo */
+    overflow-x: hidden;
+}
+
+/* Barra de navegação */
+
+nav {
+    position: fixed;
+    width: 100%;
+    height: 4.5em;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    background-color: #ffffff;
+    box-shadow: 0 0.5em 0.5em #0000001a;
+
+    display: flex; /* flexbox para organizar os itens dentro da barra de navegação */
+    align-items: center; /* centraliza verticalmente os itens dentro da barra de navegação */
+    justify-content: space-between; /* distribui os itens dentro da barra de navegação igualmente, com espaço entre eles */
+
+    z-index: 1000;
+}
+
+.nav-logo {
+    width: 13em;
+    height: 3em;
+    margin-left: 15vw;
+}
+
+nav ul {
+    margin-right: 15vw;
+    gap: 1.25em; /* adiciona espaço entre os itens da lista */
+
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: #626262;
+
+    text-decoration: none;
+}
+
+.nav-texto:hover {
+    text-decoration: underline;
+}
+
+.nav-botao1 {
+    cursor: pointer;
+    padding: 0.5em 1em; /* espaçamento para delimitar o botão */
+    border-radius: 0.375em;
+
+    background-color: #79A1DB;
+    border: 0.125em solid #79A1DB;
+
+    color: #ffffff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-botao1:hover {
+    background-color: #6e93cc; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #6e93cc;
+}
+
+.nav-botao2 {
+    padding: 0.5em 1em; /* espaçamento para delimitar o botão */
+    border-radius: 0.375em;
+
+    border: 0.125em solid #79A1DB;
+
+    color: #79A1DB;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-botao2:hover {
+    background-color: #f3f3f3; /* Cor de fundo quando o mouse está sobre o botão */
+    border: 0.125em solid #6e93cc;
+}
+
+@media screen and (max-width: 1100px) {
+    .nav-texto {
+        display: none; /* esconde os elementos com a classe nav-texto */
+    }
+}
+
+/* QR Code */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    margin-top: -6em;
+    background-color: #79A1DB;
+    padding: 30px;
+    border-radius: 1rem;
+    width: 20vw;
+    max-width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.close {
+    color: #ffffff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #f3f3f3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: #ffffff;
+    margin: 20px 0;
+}
+
+.modal-content img {
+    margin: 10px 0;
+    width: auto;
+    max-width: 100%;
+}
+
+.modal-content p {
+    color: #ffffff;
+    margin: 10px 0;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    color: #626262;
+    font-size: 15px;
+}
+
+input[type="text"]:focus {
+    border-color: #6e93cc;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+/* Estilo para o conteúdo principal para garantir que não fique oculto sob a barra de navegação */
+.content {
+    margin-top: 6em;  /* margem superior para evitar a sobreposição com a barra de navegação */
+}
+
+.return-button {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #79A1DB;
+    color: #ffffff;
+    padding: 0.5vw 1vw;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.return-button:hover {
+    background-color: #6e93cc;
+}
+
+h1 {
+    color: #626262;
+}
+
+.event {
+    position: relative;
+    background-color: #ffffff;
+    color: #626262;
+    padding: 1vw;
+    margin-top: 1vw;
+    border-radius: 0.25vw; 
+    box-shadow: 0 0 0.5vw rgba(0,0,0,0.1);
+}
+
+.event h2 {
+    margin: 0.5vw 0;  /* Reduz e centraliza o espaçamento ao redor do título */
+}
+
+
+.event p {
+    width: 100%;  /* Ocupa toda a largura disponível para alinhar o texto */
+    margin: 0.2vw 0;  /* Ajusta o espaçamento entre parágrafos para centralizar verticalmente */
+}
+
+.volunteer-button {
+    font-family: 'Ubuntu', sans-serif;
+    height: 2vw;
+    position: absolute;
+    right: 21vw; /* Espaçamento da borda esquerda do card */
+    bottom: 1vw; /* Espaçamento da borda inferior do card */
+    padding: 0.5em 1em; /* Espaçamento interno para tornar o botão mais legível */
+    background-color: #f9a870; /* Cor de fundo amarela para destaque */
+    color: white; /* Texto branco para contraste */
+    border: none; /* Sem borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de clique */
+    z-index: 10; /* Garante que o botão fique sobre outros elementos */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.volunteer-button:hover {
+    background-color: #eea16b; /* Mudança de cor ao passar o mouse */
+}
+
+
+/* Voluntariado */
+
+/* Estilo base do popup */
+.popup {
+    display: none; /* Mantenha como none para mostrar via JS */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Sombra escura para fundo */
+    z-index: 1000; /* Assegura que o popup fique na frente de outros elementos */
+}
+
+/* Conteúdo interno do popup */
+.popup-content {
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Botão de fechar o popup */
+.close-button {
+    font-size: 24px;
+    line-height: 24px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Estilo dos títulos dentro do popup */
+.popup-content h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilos dos inputs e textarea */
+.popup-content input[type="text"],
+.popup-content input[type="tel"],
+.popup-content input[type="email"],
+.popup-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Botão de enviar */
+.popup-content button {
+    background-color: #4CAF50; /* Cor verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Estilo quando o input está em foco */
+.popup-content input[type="text"]:focus,
+.popup-content input[type="tel"]:focus,
+.popup-content input[type="email"]:focus,
+.popup-content textarea:focus {
+    border-color: #4CAF50; /* Mudança de cor para corresponder ao botão */
+    outline: none;
+}
+
+
+/* Eventos */
+
+.event-image {
+    position: absolute;
+    right: 0;  /* Alinha à direita do container .event */
+    top: 0;    /* Alinha ao topo do container .event */
+    width: 20vw; /* Define a largura da imagem */
+    height: 100%; /* Faz com que a altura da imagem seja igual à do container .event */
+    background-color: #C4C4C4; /* Cor de fundo para visualização */
+    border-top-right-radius: 0.25vw;  /* Arredonda o canto superior direito */
+    border-bottom-right-radius: 0.25vw;  /* Arredonda o canto inferior direito */
+}
+
+.icon {
+    width: 1em;  /* ou qualquer outro tamanho apropriado */
+    height: auto; /* mantém a proporção da imagem */
+    vertical-align: middle; /* alinha verticalmente os ícones com o texto */
+    margin-right: 0.5vw;  /* ajusta conforme necessário */
+    margin-top: -0.3em;
+}
+
+.icon path {
+    fill: #79A1DB; /* ou qualquer cor CSS válida */
+}
+
+.description-icon:before {
+    content: "📄"; /* Adicione ícones adequados */
+}
+
+.location-icon:before {
+    content: "📍";
+}
+
+.time-icon:before {
+    content: "⏰";
+}
+
+/* Rodapé */
+
+.detalhe-azul {
+    position: absolute;
+    width: 100%;
+    
+    left: 0;
+    margin-top: -4.5vw;
+
+    z-index: -1;
+}
+
+.rodape-fundo {
+    position: absolute;
+    width: 100%;
+    height: 18em;
+    left: 0;
+
+    background-color: #79A1DB;
+}
+
+.rodape-conteiner {
+    width: 58vw; /* evita estiramento excessivo */
+    margin: 0 15vw;  /* margem em ambos os lados do corpo */
+    margin-top: 4em;
+
+    color: #ffffff;
+
+    display: flex;
+    justify-content: space-around; /* espaça os itens uniformemente */
+    align-items: center;
+}
+
+.rodape-logo {
+    height: 10vw;/* não cresce, não encolhe, base em 10em */
+    margin-right: 4vw;
+}
+
+.rodape-secao {
+    margin-left: 2vw;
+
+    flex: 1; /* permite que as seções cresçam para preencher o espaço disponível */
+}
+
+.rodape-secao a:hover {
+    text-decoration: underline;
+}
+
+.rodape-secao h3 {
+    margin-bottom: 10px;
+    width: 12vw;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rodape-secao a {
+    color: inherit; /* herda a cor do texto do contêiner pai */
+    display: block; /* cada link aparece em sua própria linha */
+    text-decoration: none;
+}
+
+.rodape-contatos {
+    display: flex;
+    justify-content: flex-start; /* distribui os ícones uniformemente */
+    gap: 15px;
+
+    z-index: 1000;
+}
+
+.contato-icone {
+    width: 3vw;
+    height: 3vw;
+}
